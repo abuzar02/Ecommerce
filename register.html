@@ -47,7 +47,7 @@
                         <option value="left">Left</option>
                         <option value="right">Right</option>
                     </select>
-                    <select id="package" required>
+                    <select id="packages" required>
                         <option value="">Select Package</option>
                         <option value="basic">Kavach (3000.00)</option>
                     </select>
@@ -112,7 +112,7 @@
             const sponsorId = document.getElementById('sponsorId').value;
             const sponsorName = document.getElementById('sponsorName').value;
             const position = document.getElementById('position').value;
-            const package = document.getElementById('package').value;
+            const package = document.getElementById('packages').value;
             const name = document.getElementById('name').value;
             const password = document.getElementById('password').value;
             const phone = document.getElementById('phone').value;
@@ -120,7 +120,7 @@
             const address = document.getElementById('address').value;
 
             try {
-                const response = await fetch('https://bazaar-5c58.onrender.com/api/register', {
+                const response = await fetch('https://bazaaapi.vercel.app/api/register', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
