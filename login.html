@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="./register.css">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+    <main class="navbar">
+        <section class="container d-flex">
+            <div class="logo">
+                <img src="../images/logo-b7ec1ff5 (1).png" />
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/contact.html">Contact Us</a></li>
+                    <li><a href="/register.html">Register</a></li>
+                    <li><a href="/login.html">Login</a></li>
+                </ul>
+            </nav>
+            <i class="fas fa-bars hamburger"></i>
+        </section>
+    </main>
+
+    <div class="main-background">
+        <div class="form">
+            <div class="form-register">
+                <h1>Login</h1>
+                <form id="loginForm">
+                    <input type="text" id="sponsorId" placeholder="Sponsor ID" required>
+                    <input type="password" id="password" placeholder="Password" required>
+                    <button type="submit">Login</button>
+                </form>
+                <p id="message"></p> <!-- This will show success or error message -->
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <div class="s1">
+                <h3>Become a Consultant</h3>
+                <ul>
+                    <li><a href="#">Business Opportunity</a></li>
+                    <li><a href="#">Consultant Locator</a></li>
+                    <li><a href="#">Investor Information</a></li>
+                    <li><a href="#">Event Gallery</a></li>
+                </ul>
+            </div>
+            <div class="s1">
+                <h3>About</h3>
+                <ul>
+                    <li><a href="#">Our Story</a></li>
+                    <li><a href="#">The Visionary</a></li>
+                </ul>
+            </div>
+            <div class="s1">
+                <h3>Corporate information</h3>
+                <ul>
+                    <li><a href="#">Enterprise</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="s1">
+                <h3>Member</h3>
+                <ul>
+                    <li><a href="#">Quick Pay</a></li>
+                    <li><a href="#">Secure Payments</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="inner-co">
+            <span>All Rights reserved </span>
+            <span> / Bazarapna</span>
+        </div>
+    </div>
+
+    <!-- Add JavaScript to handle form submission -->
+   <script>
+    // Assuming you have a form with ID 'loginForm'
+document.getElementById('loginForm').addEventListener('submit', async (event) => {
+    event.preventDefault(); // Prevent the default form submission
+
+    const sponsorId = document.getElementById('sponsorId').value;
+    const password = document.getElementById('password').value;
+
+    const response = await fetch('https://bazaar-5c58.onrender.com/api/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ sponsorId, password })
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+        // Store the token in local storage or a cookie
+        localStorage.setItem('token', data.token);
+        
+        // Check the user role
+        if (data.role === 'admin') {
+            // Redirect to admin dashboard
+            window.location.href = '/admin-dashboard.html';
+        } else {
+            // Redirect to the index page or user dashboard
+            window.location.href = '/index.html';
+        }
+    } else {
+        // Handle error response
+        alert(data.message || 'Login failed');
+    }
+});
+
+   </script>
+</body>
+</html>

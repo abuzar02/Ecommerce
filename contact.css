@@ -1,0 +1,198 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 0;
+}
+
+.contact-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+p {
+    text-align: center;
+    color: #555;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 34px;
+}
+
+label {
+    font-weight: bold;
+    color: #333;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.contact-info {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.contact-info p {
+    margin: 5px 0;
+    color: #333;
+}
+
+.contactcontent {
+    background-image: url(../images/contactys.jpg);
+    width: 100%;
+    height: 80vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.con {
+    padding-top: 200px;
+    width: 50%;
+    margin: auto;
+}
+
+.con h1 {
+    font-size: 45px;
+}
+
+.con p {
+    font-size: 15px;
+    margin-top: 20px;
+    letter-spacing: 2px;
+}
+
+.sec2contact {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.sec2contact .left {
+    width: 50%;
+    height: 300px;
+}
+
+.sec2contact .left img {
+    width: 100%;
+    height: 100%;
+}
+
+.containerrr {
+    width: 80%;
+    margin: auto;
+}
+
+.sec2contact .right {
+    width: 50%;
+    height: 300px;
+}
+
+.sec2contact .right p {
+    text-align: justify;
+}
+
+.feedback {
+    text-align: center;
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+    .con {
+        width: 80%; /* Reduce width for smaller screens */
+        padding-top: 100px;
+    }
+
+    .con h1 {
+        font-size: 30px; /* Adjust font size */
+    }
+
+    .con p {
+        font-size: 14px; /* Adjust font size */
+    }
+
+    .sec2contact {
+        flex-direction: column; /* Stack content vertically */
+        gap: 20px;
+        margin-top: 30px;
+    }
+
+    .sec2contact .left, .sec2contact .right {
+        width: 100%; /* Make images full width */
+        height: auto; /* Allow dynamic height */
+    }
+
+    .sec2contact .left img {
+        height: auto; /* Let image height adjust based on width */
+    }
+
+    .contact-container {
+        width: 90%; /* Reduce width for mobile */
+        padding: 15px;
+    }
+
+    .contact-form {
+        gap: 10px; /* Reduce gap between form elements */
+    }
+
+    button {
+        padding: 12px; /* Increase button padding for better usability on smaller screens */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .con {
+        width: 95%; /* Further reduce width for small devices */
+    }
+
+    .con h1 {
+        font-size: 24px; /* Adjust font size for small screens */
+    }
+
+    .con p {
+        font-size: 13px; /* Adjust font size */
+    }
+
+    .sec2contact {
+        margin-top: 20px; /* Reduce top margin */
+    }
+
+    .feedback {
+        font-size: 14px; /* Adjust font size */
+    }
+}

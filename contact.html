@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../contact.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <main class="navbar">
+        <section class="container d-flex">
+            <div class="logo">
+                <img src="../images/logo-b7ec1ff5 (1).png" />
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/contact.html">Contact Us</a></li>
+                    <li><a href="/register.html">Register</a></li>
+                    <li><a href="/login.html">Login</a></li>
+                </ul>
+            </nav>
+
+            <i class="fas fa-bars hamburger"></i>
+        </section>
+    </main>
+
+
+    <div class="contactcontent">
+        <div class="con">
+            <h1>contact us</h1>
+            <p>At Bazar Apna, we value our customers and are here to assist you with any queries or concerns you may
+                have. Whether you have a question about our products, want to provide feedback, or need support, feel
+                free to reach out to us through the following options:</p>
+
+        </div>
+    </div>
+    <div class="containerrr">
+
+
+        <div class="sec2contact">
+            <div class="left">
+                <img src="../images/costmer.jpg" alt="">
+            </div>
+            <div class="right">
+                <h2>Customer Support</h2>
+                <p>At Bazar Apna, customer satisfaction is our top priority. We are here to help you with any questions
+                    or issues you may have regarding our services, products, or your orders. Our dedicated support team
+                    is always available to assist you.</p>
+            </div>
+        </div>
+        <div class="feedback">
+            <h2>feedback</h2>
+            <p>We value your feedback and are always striving to improve. Feel free to share your experience with us, and we will do our best to address any concerns.</p>
+        </div>
+    </div>
+
+    
+
+    <div class="contact-container">
+        <h1>Contact Us</h1>
+        <p>If you have any questions or concerns, feel free to reach out to us!</p>
+
+        <form class="contact-form">
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Your Message:</label>
+            <textarea id="message" name="message" rows="6" required></textarea>
+
+            <button type="submit">Send Message</button>
+        </form>
+
+        <div class="contact-info">
+            <h3>Our Contact Information:</h3>
+            <p><strong>Phone:</strong> +91 9835822737</p>
+            <p><strong>Email:</strong> bazaarapnakrdu2512@gmail.com</p>
+            <p><strong>Address:</strong> mumbai</p>
+        </div>
+    </div>
+
+
+    <div class="footer">
+        <div class="container ">
+            <div class="s1">
+
+                <ul>
+                    <h3>Become a Consultant</h3>
+                    <li><a href="#">Business Opportunity</a></li>
+                    <li><a href="#">Consultant Locator</a></li>
+                    <li><a href="#">Investor Information</a></li>
+                    <li><a href="#">Event Gallery</a></li>
+                </ul>
+            </div>
+            <div class="s1">
+
+                <ul>
+                    <h3>About</h3>
+                    <li><a href="#">Our Story</a></li>
+                    <li><a href="#">The Visionary</a></li>
+                </ul>
+            </div>
+            <div class="s1">
+
+                <ul>
+                    <h3>Corporate information</h3>
+                    <li><a href="#">Enterprise</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="s1">
+
+                <ul>
+                    <h3>Member</h3>
+                    <li><a href="#">Quick Pay</a></li>
+                    <li><a href="#">Secure Payments</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="inner-co">
+            <span>All Rights reserved </span>
+            <span> / Bazarapna</span>
+        </div>
+    </div>
+
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+const navMenu = document.querySelector('nav ul');
+
+hamburger.addEventListener('click', () => {
+    navMenu.classList.toggle('show'); // Toggle the 'show' class
+
+});
+    </script>
+</body>
+
+
+</html>

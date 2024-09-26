@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="./style.css">
+    <style>
+     
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            width: 100%;
+            max-width: 400px;
+            padding: 10px;
+            margin: 0 auto 20px;
+            border: 2px solid #007bff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: border-color 0.3s;
+            display: block; /* Center the input */
+        }
+        input[type="text"]:focus {
+            border-color: #0056b3;
+            outline: none;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            background-color: white;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .pagination button {
+            padding: 10px 15px;
+            margin: 0 5px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .pagination button:hover:not(:disabled) {
+            background-color: #0056b3;
+        }
+        .pagination button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 24px;
+            }
+            table {
+                font-size: 14px;
+            }
+            input[type="text"] {
+                font-size: 14px;
+            }
+            .pagination button {
+                padding: 8px 10px;
+                font-size: 14px;
+            }
+        }
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 20px;
+            }
+            input[type="text"] {
+                padding: 8px;
+            }
+            table {
+                font-size: 12px;
+            }
+            .pagination button {
+                padding: 5px 8px;
+                font-size: 12px;
+            }
+        }
+    </style>
+    </style>
+</head>
+<body>
+    
+    <main class="navbar">
+        <section class="container d-flex">
+            <div class="logo">
+                <img src="../images/logo-b7ec1ff5 (1).png" />
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/contact.html">Contact Us</a></li>
+                    <li><a href="/register.html">Register</a></li>
+                    <li><a href="/login.html">Login</a></li>
+                </ul>
+            </nav>
+            <i class="fas fa-bars hamburger"></i>
+        </section>
+    </main>
+    <h1>Admin Dashboard</h1>
+    
+    <input type="text" id="search" placeholder="Search users..." onkeyup="filterUsers()">
+    
+    <table id="userTable">
+        <thead>
+            <tr>
+                <th>Sponsor ID</th>
+                <th>Sponsor Name</th>
+                <th>Position</th>
+                <th>Package</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+            </tr>
+        </thead>
+        <tbody id="userTableBody">
+            <!-- User rows will be inserted here -->
+        </tbody>
+    </table>
+
+    <div class="pagination" id="pagination">
+        <!-- Pagination buttons will be inserted here -->
+    </div>
+
+    <script>
+        // Function to check if the user is an admin
+        const checkAdminAccess = () => {
+            const token = localStorage.getItem('token');
+
+            if (!token) {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            const payload = JSON.parse(atob(token.split('.')[1]));
+
+            if (payload.role !== 'admin') {
+                window.location.href = 'index.html';
+            }
+        };
+
+        // Function to fetch users from the API
+        const fetchUsers = async (page = 1, searchQuery = '') => {
+            const response = await fetch(`https://bazaar-5c58.onrender.com/api/users?page=${page}&search=${searchQuery}`, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
+            });
+            return response.json();
+        };
+
+        // Function to display users in the table
+        const displayUsers = async (page, searchQuery) => {
+            const data = await fetchUsers(page, searchQuery);
+            const users = data.users;
+            const userTableBody = document.getElementById('userTableBody');
+            userTableBody.innerHTML = '';
+
+            users.forEach(user => {
+                const row = `<tr>
+                    <td>${user.sponsorId}</td>
+                    <td>${user.sponsorName}</td>
+                    <td>${user.position}</td>
+                    <td>${user.package}</td>
+                    <td>${user.name}</td>
+                    <td>${user.email}</td>
+                    <td>${user.phone}</td>
+                </tr>`;
+                userTableBody.innerHTML += row;
+            });
+
+            setupPagination(data.totalPages, page);
+        };
+
+        // Function to set up pagination
+        const setupPagination = (totalPages, currentPage) => {
+            const pagination = document.getElementById('pagination');
+            pagination.innerHTML = '';
+
+            for (let i = 1; i <= totalPages; i++) {
+                const button = document.createElement('button');
+                button.textContent = i;
+                button.onclick = () => displayUsers(i);
+                if (i === currentPage) {
+                    button.disabled = true;
+                }
+                pagination.appendChild(button);
+            }
+        };
+
+        // Function to filter users based on search input
+        const filterUsers = async () => {
+            const searchQuery = document.getElementById('search').value;
+            await displayUsers(1, searchQuery); // Reset to page 1 on search
+        };
+
+        // Call the functions on load
+        checkAdminAccess();
+        displayUsers();
+    </script>
+</body>
+</html>
